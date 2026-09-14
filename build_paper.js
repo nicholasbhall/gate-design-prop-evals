@@ -604,7 +604,7 @@ children.push(Caption('Table 6. Net per-trade edge required for a coin-flip pass
 
 children.push(Flag('These figures were re-derived for this draft and correct an error in the earlier tabulation, which reported $25\u201330 at one trade per day. The original grid over \u03bc was non-uniform (0, 1, 2, 3, 5, 8, 12, 20, 30, 50) but was rendered on a uniform index extent, so contour positions read off the figure were distorted. At \u03c3 = 90 the measured pass probability is 0.400 at \u03bc = $30, placing the 0.50 contour above rather than below that grid point. The corrected band is obtained by bisection on \u03bc rather than by reading a contour, and Figure 1 is regenerated on a uniform grid. The error ran against the participant, so no downstream conclusion changes.'));
 
-children.push(Img('figures/fig1_phase_mu_sigma.png', 624, 240));
+children.push(Img('fig1_phase_mu_sigma.png', 624, 240));
 children.push(Caption('Figure 1. Pass probability over the (\u03bc, \u03c3) surface at one, five, and twenty trades per day. Contours mark the 0.25, 0.50, and 0.75 levels. The vertical line at \u03bc = 0 is the cost floor: once measured transaction costs are applied, every candidate in this research program sits on or to the left of it. The open marker is the best gross per-trade edge ever measured in the program ($1.74 at \u03c3 = 60), plotted as if costs were zero.'));
 
 children.push(P(
@@ -622,7 +622,7 @@ children.push(P(
   { align: AlignmentType.BOTH }
 ));
 
-children.push(Img('figures/fig2_frontier_q_f.png', 400, 261));
+children.push(Img('fig2_frontier_q_f.png', 400, 261));
 children.push(Caption('Figure 2. Sizing-optimised pass probability against per-trade skill q = \u03bc/\u03c3. The left edge is the result: at exactly zero skill, optimising over position size alone yields a pass probability of 0.36 to 0.47, rising in trade frequency. The dash-dotted line is the continuous-monitoring benchmark d/(d+T) = 0.40; discrete end-of-day observation with overshoot pushes above it.'));
 
 children.push(RP([
