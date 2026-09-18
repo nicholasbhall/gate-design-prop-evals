@@ -4,6 +4,8 @@ const {
   PageBreak, Footer, PageNumber, LevelFormat, convertInchesToTwip, ImageRun
 } = require('docx');
 const fs = require('fs');
+// ANON=1 node build_paper.js  -> anonymised build for double-blind review (no byline, blank metadata)
+const ANON = process.env.ANON === '1';
 
 const W = 9360; // content width in DXA (Letter, 1" margins)
 
@@ -136,7 +138,7 @@ children.push(new Paragraph({
   spacing: { before: 600, after: 300 },
   children: [new TextRun({ text: 'Gate Design and Stage-Dependent Incentives in Retail Proprietary-Trading Evaluations', bold: true, size: 34, font: 'Liberation Serif' })]
 }));
-children.push(P('Nicholas Hall', { align: AlignmentType.CENTER, size: 24, spacingAfter: 120 }));
+if (!ANON) children.push(P('Nicholas Hall', { align: AlignmentType.CENTER, size: 24, spacingAfter: 120 }));
 
 children.push(new Paragraph({
   spacing: { after: 100 },
@@ -145,12 +147,7 @@ children.push(new Paragraph({
 }));
 
 children.push(P(
-  'Retail proprietary-trading firms sell a two-stage product: a paid evaluation that must reach a profit target before breaching a trailing drawdown, followed by a funded account that must survive a minimum window and satisfy a consistency rule before a payout is released. We show that the geometry of this contract creates incentives that differ by stage and that make passing a poor standalone signal of skill. Under end-of-day trailing the evaluation rewards a fast, lumpy trade cadence while the funded account punishes it, by a factor of nine in the joint gate at identical strategy parameters. The evaluation is defeatable at zero skill: position sizing alone yields a pass probability near 0.40, against a measured cohort rate of 0.168. Pass probability does rise with skill, but at a fixed cadence a real edge and aggressive sizing move it by nearly the same amount, so a pass rate confounds the two and cannot by itself be read as evidence of skill. And under a simplified contract model the seller\u2019s contribution margin is bounded by the gap between perceived and actual gate probabilities \u2014 the probability analogue of shrouding a price component \u2014 under which a permeable, marketed evaluation and a hard, unpriceable payout gate are what a margin-maximising seller would choose. The observed design is consistent with that: across the sector, pass rates are published far more often than payout rates, and two families of firms with inverted rule architectures differ by a factor of 1.7 in pass rate within a single sample, an association consistent with substitution between gates rather than with skill filtering.',
-  { align: AlignmentType.BOTH, size: 21 }
-));
-
-children.push(P(
-  'The same geometry produces negative expected value for the participant. Within the strategy universe we measured, and under the trade-level cost model the paper relies on, no measured strategy configuration at the drifts we observed clears break-even on any account structure we could source: a transaction-cost floor exceeded every gross per-trade edge surviving our pre-specified research protocol, and the joint pass-and-payout gate is compressed to at or below the line implied by the account price. Under the baseline simulation model, break-even lies between a 40.5% and 41.5% win rate at 1:1.5 net of costs across the three accounts studied in detail and the two implementations, against a driftless baseline of 40.0%. We also measure the delta-neutral construction these firms prohibit and find it approximately expected-value neutral under symmetric sizing at the observed payout ceiling, with the ceiling rather than the prohibition doing the work. Every account-level result is reported against a zero-edge control through the identical pipeline, without which pass and payout rates are uninterpretable.',
+  'Retail proprietary-trading firms sell a two-stage product: a paid evaluation that must reach a profit target before breaching a trailing drawdown, then a funded account that must survive a minimum window and consistency rule before payout. We show the contract’s geometry creates stage-dependent incentives that make passing a poor standalone signal of skill. Under end-of-day trailing the evaluation rewards a fast, lumpy cadence while the funded account punishes it, by a factor of nine in the joint gate. Sizing alone yields a pass probability near 0.40 at zero skill, against a measured cohort rate of 0.168; a real edge moves the pass rate by nearly the same amount. A simplified seller model bounds contribution margin by the gap between perceived and actual gate probabilities; the observed design is consistent with it. In the measured strategy universe no configuration clears break-even; the hedged construction firms prohibit is approximately expected-value neutral.',
   { align: AlignmentType.BOTH, size: 21 }
 ));
 
@@ -353,6 +350,12 @@ children.push(P(
   { align: AlignmentType.BOTH }
 ));
 
+
+children.push(H2('2.7 Disclosures'));
+children.push(P(
+  'Large-language-model tools were used in preparing this manuscript: Claude (Anthropic) for editorial and drafting assistance, literature search, and document assembly; ChatGPT (OpenAI) for two rounds of adversarial review of the draft. No portion of the research design, simulation code, data collection, analysis, or substantive claims was generated by these tools; all were produced by the author and verified independently of them. The author has purchased evaluation accounts from firms named in this paper as a retail customer, has no other financial or personal relationship with any of them, and received no external funding.',
+  { align: AlignmentType.BOTH }
+));
 
 // ---------------- 3 THE PRODUCT ----------------
 children.push(H1('3. The product: cost structure and rule surface'));
@@ -1625,7 +1628,10 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 
 // ---------------- APPENDIX A ----------------
 children.push(H1('Appendix A. Verification protocol'));
-children.push(P('All simulation code, the figure-generation scripts, and the build script producing this document are to be released in a public repository alongside the preprint. The checks below are what a reader with that repository can run.', { align: AlignmentType.BOTH }));
+children.push(P(ANON
+  ? 'All simulation code, the figure-generation scripts, and the build script producing this document are public in an open repository; the URL is withheld here to preserve anonymous review and is given on the title page. The checks below are what a reader with that repository can run.'
+  : 'All simulation code, the figure-generation scripts, and the build script producing this document are public at https://github.com/nicholasbhall/gate-design-prop-evals. The checks below are what a reader with that repository can run.',
+  { align: AlignmentType.BOTH }));
 
 children.push(H2('A.1 Reproduction checks'));
 children.push(Bullet('Re-run the phase-diagram script unchanged and confirm Tables 5\u20138 reproduce within Monte Carlo error; exact reproduction is expected on the same numpy version and seeds; an independent implementation should agree within Monte Carlo error.'));
@@ -1728,7 +1734,8 @@ children.push(P('Swiset (2025). Prop trading challenge completion rates by evalu
 children.push(new Paragraph({ children: [new PageBreak()] }));
 
 const doc = new Document({
-  creator: 'Nicholas Hall',
+  creator: ANON ? '' : 'Nicholas Hall',
+  lastModifiedBy: ANON ? '' : 'Nicholas Hall',
   title: 'Gate Design and Stage-Dependent Incentives in Retail Proprietary-Trading Evaluations',
   description: 'Version 24, September 2026',
   numbering: {
@@ -1770,6 +1777,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(b => {
-  fs.writeFileSync('./Bedrock_WorkingPaper_v24.docx', b);
+  fs.writeFileSync(ANON ? './Bedrock_WorkingPaper_v24_anon.docx' : './Bedrock_WorkingPaper_v24.docx', b);
   console.log('written');
 });
