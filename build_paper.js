@@ -133,21 +133,10 @@ const children = [];
 // ---------------- TITLE ----------------
 children.push(new Paragraph({
   alignment: AlignmentType.CENTER,
-  spacing: { before: 600, after: 100 },
-  children: [new TextRun({ text: 'Gate Design and Stage-Dependent Incentives', bold: true, size: 34, font: 'Liberation Serif' })]
-}));
-children.push(new Paragraph({
-  alignment: AlignmentType.CENTER,
-  spacing: { after: 140 },
-  children: [new TextRun({ text: 'in Retail Proprietary-Trading Evaluations', bold: true, size: 34, font: 'Liberation Serif' })]
-}));
-children.push(new Paragraph({
-  alignment: AlignmentType.CENTER,
-  spacing: { after: 300 },
-  children: [new TextRun({ text: 'Why passing is not standalone evidence of skill, and why the product fails to pay under measured trading constraints', italics: true, size: 24, font: 'Liberation Serif' })]
+  spacing: { before: 600, after: 300 },
+  children: [new TextRun({ text: 'Gate Design and Stage-Dependent Incentives in Retail Proprietary-Trading Evaluations', bold: true, size: 34, font: 'Liberation Serif' })]
 }));
 children.push(P('Nicholas Hall', { align: AlignmentType.CENTER, size: 24, spacingAfter: 120 }));
-children.push(P('Working paper — version 23 draft · 13 September 2026', { align: AlignmentType.CENTER, size: 20, italics: true, spacingAfter: 400 }));
 
 children.push(new Paragraph({
   spacing: { after: 100 },
@@ -260,7 +249,7 @@ children.push(P(
 ));
 
 children.push(P(
-  'Eight operational agents ran in a defined reporting structure — research, backtesting, implementation, risk, and quantitative research functions, together with summarisation and reflection roles — all reporting to a coordinating agent, which in turn reported to the human principal. Decision authority was never delegated: kills, escalations, and any advancement toward execution required explicit human approval, and the risk function held veto power over the others.',
+  'Eight operational agents ran in a defined reporting structure — research, backtesting, implementation, risk, and quantitative research functions, together with summarisation and reflection roles — all reporting to a coordinating agent, which in turn reported to the human principal. Decision authority was never delegated: kills, escalations, and any advancement toward execution required explicit human approval, and the risk function held veto power over the others. Table 1 summarises the apparatus throughput over the orchestrated phase.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -402,7 +391,7 @@ children.push(Flag('Scope note: firms using intraday trailing on unrealised prof
 children.push(H2('3.3 The barrier geometry is not constant across account sizes'));
 
 children.push(P(
-  'Each account specifies a profit target T and a maximum drawdown d. Under the driftless limit of §4.2, the pass probability of a fixed-barrier account is d/(d+T), which depends only on the ratio of the two. That ratio is not held constant as account size increases.',
+  'Each account specifies a profit target T and a maximum drawdown d. Under the driftless limit of §4.2, the pass probability of a fixed-barrier account is d/(d+T), which depends only on the ratio of the two. That ratio is not held constant as account size increases. Table 2 reports the barrier geometry by account size.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -730,7 +719,7 @@ children.push(makeTable(
 ));
 children.push(Caption('Table 10. Evaluation-stage pass rate and time to resolution by cadence. Source: two-stage simulation, this paper.'));
 children.push(P(
-  'Because the maximum-loss level is static within a session under end-of-day trailing, additional intraday trades do not compound drawdown risk within that session. Pass rate is essentially flat in frequency while time to resolution falls more than eightfold across the range shown. Within the modelled environment, greater cadence reduces expected time to resolution without materially reducing pass probability.',
+  'Because the maximum-loss level is static within a session under end-of-day trailing, additional intraday trades do not compound drawdown risk within that session. Table 10 shows pass rate essentially flat in frequency while time to resolution falls more than eightfold across the range shown. Within the modelled environment, greater cadence reduces expected time to resolution without materially reducing pass probability.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -742,7 +731,7 @@ children.push(makeTable(
 ));
 children.push(Caption('Table 11. Funded-stage payout rate by cadence. Source: two-stage simulation, this paper.'));
 children.push(P(
-  'The funded account must survive a five-day minimum. Twenty trades a day is a hundred opportunities to touch the floor. Within the modelled environment, the funded account is best traded as slowly as its minimum-day requirement allows.',
+  'The funded account must survive a five-day minimum. Twenty trades a day is a hundred opportunities to touch the floor (Table 11). Within the modelled environment, the funded account is best traded as slowly as its minimum-day requirement allows.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -788,7 +777,7 @@ children.push(P(
 
 
 children.push(P(
-  'The threshold was re-derived on an independent implementation for this draft: a two-stage simulation with end-of-day trailing, costs applied per trade, a fast evaluation configuration and a slow funded configuration, solving directly for the win rate at which expected value crosses zero.',
+  'The threshold was re-derived on an independent implementation for this draft: a two-stage simulation with end-of-day trailing, costs applied per trade, a fast evaluation configuration and a slow funded configuration, solving directly for the win rate at which expected value crosses zero. Table 13 reports the result.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -829,7 +818,7 @@ children.push(P(
 children.push(H1('8. The kill record'));
 
 children.push(P(
-  'The preceding sections establish a threshold; this section reports what was measured against it. Three research cycles over roughly two dozen mechanism-first candidates, followed by two account-level measurements. Every candidate is reported, including those that passed certification and were later withdrawn, because a kill record is only evidence if it includes the near-misses.',
+  'The preceding sections establish a threshold; this section reports what was measured against it. Three research cycles over roughly two dozen mechanism-first candidates, followed by two account-level measurements. Every candidate is reported, including those that passed certification and were later withdrawn, because a kill record is only evidence if it includes the near-misses. Table 14 summarises the three cycles.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -862,7 +851,7 @@ children.push(RP([
 ], { align: AlignmentType.BOTH }));
 
 children.push(P(
-  'A third cycle ran four waves of ten mechanism-first candidates. Two cleared the risk ladder and are the closest the programme came to a survivor.',
+  'A third cycle ran four waves of ten mechanism-first candidates. Two cleared the risk ladder and are the closest the programme came to a survivor. Table 15 lists them alongside the two adjacent candidates.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -891,7 +880,7 @@ children.push(P(
 ));
 
 children.push(P(
-  'The first track tested a mechanical fair-price reversion around the New York open. Its first pass looked marginally positive: a twenty-contract morning-only configuration reported a 28.5% out-of-sample pass rate and an extraction expected value of +$362 per account. The per-firm split shows that positive appearance was entirely an artefact of the firms whose constraints had not yet been modelled.',
+  'The first track tested a mechanical fair-price reversion around the New York open. Its first pass looked marginally positive: a twenty-contract morning-only configuration reported a 28.5% out-of-sample pass rate and an extraction expected value of +$362 per account. The per-firm split shows that positive appearance was entirely an artefact of the firms whose constraints had not yet been modelled. Table 16 gives the per-firm split.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -931,7 +920,7 @@ children.push(RP([
 children.push(H2('8.3 Cycle III — order flow at tape resolution'));
 
 children.push(P(
-  'The final cycle asked whether the separation between forced flow, which mean-reverts, and informed flow, which continues, becomes tradable at tick resolution. Two candidates were funded from a fixed $250 data budget. Both are dead.',
+  'The final cycle asked whether the separation between forced flow, which mean-reverts, and informed flow, which continues, becomes tradable at tick resolution. Two candidates were funded from a fixed $250 data budget. Both are dead. Table 17 reports both.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -958,7 +947,7 @@ children.push(P(
 children.push(H2('8.4 The payout-rate verdict'));
 
 children.push(P(
-  'No candidate produces a positive net-of-cost edge. The remaining question is whether the account structure can be made to pay independent of edge. This measurement argmaxed the consistency-adjusted payout rate over reward-to-risk, position size and cap, in sample, with one out-of-sample validation.',
+  'No candidate produces a positive net-of-cost edge. The remaining question is whether the account structure can be made to pay independent of edge. This measurement argmaxed the consistency-adjusted payout rate over reward-to-risk, position size and cap, in sample, with one out-of-sample validation. Table 18 reports the result by firm.',
   { align: AlignmentType.BOTH }
 ));
 children.push(makeTable(
@@ -998,7 +987,7 @@ children.push(P(
 
 children.push(RP([
   { t: 'Out-of-sample validation of the in-sample-selected configuration: n = 1,217, win rate 38.54%, mean −$32.14 per trade. ', b: true },
-  { t: 'That is below the 40.0% driftless baseline at the selected reward-to-risk ratio. The published rule set has negative out-of-sample edge.', b: false }
+  { t: 'That is below the 40.0% driftless baseline at the selected reward-to-risk ratio. The published rule set has negative out-of-sample edge. Table 19 sets the published rule set against the zero-edge control.', b: false }
 ], { align: AlignmentType.BOTH }));
 
 children.push(makeTable(
@@ -1023,7 +1012,7 @@ children.push(Num('The joint gate equals the control\'s joint gate, to within 0.
 
 children.push(H2('8.6 Convergence'));
 children.push(P(
-  'The two tests used different entry mechanisms, different simulator builds, and were run several weeks apart by different means. They return the same verdict by the same mechanism. An independent adversarial implementation reproducing the earlier verdict is the strongest form this result can take. The in-sample to out-of-sample decay — 47.3% to 38.5% — also reproduces the pattern observed across the full research ledger, in which every in-sample-positive candidate in the program\'s history decayed out of sample.',
+  'The two tests used different entry mechanisms, different simulator builds, and were run several weeks apart by different means. They return the same verdict by the same mechanism. An independent adversarial implementation reproducing the earlier verdict is the strongest form this result can take. The in-sample to out-of-sample decay — 47.3% to 38.5% — also reproduces the pattern observed across the full research ledger, in which every in-sample-positive candidate in the program\'s history decayed out of sample. Appendix A gives the verification protocol for reproducing these results from the public repository.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1088,7 +1077,7 @@ children.push(P(
 children.push(H2('9.2 What the sector publishes, and what it does not'));
 
 children.push(P(
-  'We surveyed the sector for any published funnel statistic. The result is reported in full below, including the firms that publish nothing, because the pattern of disclosure is evidence in its own right.',
+  'We surveyed the sector for any published funnel statistic. The result is reported in full in Table 21, including the firms that publish nothing, because the pattern of disclosure is evidence in its own right.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1278,7 +1267,7 @@ children.push(P(
 children.push(H2('12.2 It is approximately expected-value neutral under symmetric sizing'));
 
 children.push(P(
-  'Mirrored daily profit and loss, both accounts paying costs, both carrying the target and trailing drawdown of the account class studied, ninety-day horizon, 200,000 paths per cell:',
+  'Mirrored daily profit and loss, both accounts paying costs, both carrying the target and trailing drawdown of the account class studied, ninety-day horizon, 200,000 paths per cell (Table 22):',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1320,7 +1309,7 @@ children.push(RP([
 children.push(H2('12.4 Variants'));
 
 children.push(P(
-  'Unequal sizing helps modestly; larger baskets raise the cost per funded account.',
+  'Unequal sizing helps modestly; larger baskets raise the cost per funded account. Table 23 reports the variants.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1346,7 +1335,7 @@ children.push(P(
 children.push(H2('12.5 The payout ceiling is the binding constraint'));
 
 children.push(P(
-  'The hedge fails to produce a business not because it fails to raise the probability of a funded account — it does — but because of what a funded account is worth. Carrying the symmetric pair through the funded gate at the payout rates of Table 3:',
+  'The hedge fails to produce a business not because it fails to raise the probability of a funded account — it does — but because of what a funded account is worth. Carrying the symmetric pair through the funded gate at the payout rates of Table 3 gives Table 24:',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1389,7 +1378,7 @@ children.push(makeTable(
 children.push(Caption('Table 25. Apex 50K, at a $30 evaluation fee, Gaussian daily model. Zero-drift participant, so every figure is pure account option value. Source: two-stage simulation, this paper; firm rules sourced 2026-08-31.'));
 
 children.push(P(
-  'The Gaussian daily model is coarser than the rest of the paper\u2019s simulations. A trade-level rebuild \u2014 Bernoulli trades at 1:1.5, six contracts in the evaluation and two in the funded account, $4 per round turn \u2014 gives the following, and it is the version the paper relies on.',
+  'The Gaussian daily model is coarser than the rest of the paper\u2019s simulations. A trade-level rebuild \u2014 Bernoulli trades at 1:1.5, six contracts in the evaluation and two in the funded account, $4 per round turn \u2014 gives Table 26, and it is the version the paper relies on.',
   { align: AlignmentType.BOTH }
 ));
 
@@ -1681,7 +1670,7 @@ children.push(RP([{ t: 'Data the paper cannot generate. ', b: true }, { t: 'A se
 children.push(new Paragraph({ children: [new PageBreak()] }));
 
 children.push(H1('Appendix C. Cycle II geometry sweep'));
-children.push(P('Ten mechanical geometries, gross edge in index points per trade and net dollars per trade per contract after the mandated $3.00 round-turn cost. All ten are net-negative; eight are gross-negative. This table is the cost-floor gate of \u00a72.3 applied to a complete sweep, and no firm parameter enters it.', { align: AlignmentType.BOTH }));
+children.push(P('Ten mechanical geometries, gross edge in index points per trade and net dollars per trade per contract after the mandated $3.00 round-turn cost. All ten are net-negative; eight are gross-negative. Table 27 is the cost-floor gate of \u00a72.3 applied to a complete sweep, and no firm parameter enters it.', { align: AlignmentType.BOTH }));
 children.push(makeTable(
   ['Geometry', 'Gross pts/trade', 'Net $/trade/contract'],
   [
@@ -1741,7 +1730,7 @@ children.push(new Paragraph({ children: [new PageBreak()] }));
 const doc = new Document({
   creator: 'Nicholas Hall',
   title: 'Gate Design and Stage-Dependent Incentives in Retail Proprietary-Trading Evaluations',
-  description: 'Working paper v23 draft',
+  description: 'Version 24, September 2026',
   numbering: {
     config: [
       {
@@ -1781,6 +1770,6 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then(b => {
-  fs.writeFileSync('./Bedrock_WorkingPaper_v23_draft.docx', b);
+  fs.writeFileSync('./Bedrock_WorkingPaper_v24.docx', b);
   console.log('written');
 });
