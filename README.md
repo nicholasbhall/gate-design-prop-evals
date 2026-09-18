@@ -3,7 +3,7 @@
 Simulation code, figure-generation scripts, and the document build script for the paper.
 
 **Author:** Nicholas Hall · ORCID [0009-0006-0586-0220](https://orcid.org/0009-0006-0586-0220)
-**Preprint:** SSRN (link to follow) · arXiv (link to follow)
+**Preprint:** [SSRN 7453580](https://ssrn.com/abstract=7453580) · [arXiv:2609.14859](https://arxiv.org/abs/2609.14859)
 **Repository:** https://github.com/nicholasbhall/gate-design-prop-evals
 **License:** MIT for code; the paper itself is CC BY-NC-ND 4.0.
 
